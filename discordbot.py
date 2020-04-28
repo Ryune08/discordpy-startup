@@ -14,7 +14,7 @@ async def on_command_error(ctx, error):
 
 
 @bot.command()
-async def フルーク(ctx):
+async def diva(ctx):
     await ctx.send('カノーネ')
 
 
