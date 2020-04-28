@@ -14,8 +14,8 @@ async def on_command_error(ctx, error):
 
 
 @bot.command()
-async def diva(ctx):
-    await ctx.send('カノーネ')
+async def ping(ctx):
+    await ctx.send('pong')
 
 
 bot.run(token)
