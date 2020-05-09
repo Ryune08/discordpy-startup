@@ -72,7 +72,8 @@ async def on_ready():
     print("コンパスガチャシミュレーターβ版ヘヨウコソ！\n単発で引く場合は「/1」、60連引く場合は「/60」を入力してください")
 
 @bot.command()
-async def "1"(ctx):
+async def on message(message):
+    if message =="1"(ctx):
     await ctx.turn_rare()
     more=input("もう一度…「1」、終わる…「0」を入力")
     while more =="1":
@@ -82,8 +83,7 @@ async def "1"(ctx):
             break
     print("ガチャホンバンモ　キタイシテイマスヨ")
     sys.exit()
-
-async def "60"(ctx):
+    if message =="60"(ctx):
     await ctx.turn_60rare()
     more=input("もう一度…「60」、終わる…「0」を入力")
     while more=="60":
