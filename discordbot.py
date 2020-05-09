@@ -1,17 +1,41 @@
 from discord.ext import commands
 import os
 import traceback
+import numpy as np
 
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
-import numpy as np
-import sys
+@bot.event
+async def on_ready():
+    print("コンパスガチャシミュレーターβ版ヘヨウコソ！\n単発で引く場合は「/1」、60連引く場合は「/60」を入力してください")
+
+@bot.command()
+async def "1"(ctx):
+    turn_rare()
+    more=input("もう一度…「1」、終わる…「0」を入力")
+    while more =="1":
+        turn_rare()
+        more=input("もう一度…「1」、終わる…「0」を入力")
+        if more =="0":
+            break
+    print("ガチャホンバンモ　キタイシテイマスヨ")
+    
+async def "60"(ctx):
+    turn_60rare() 
+    more=input("もう一度…「60」、終わる…「0」を入力")
+    while more =="60":
+        turn_60rare()
+        more ==input("もう一度…「60」、終わる…「0」を入力")
+        if more=="0":
+            break
+    print("ガチャホンバンモ　キタイシテイマスヨ")
+
 def turn_rare():
     result=[]
     weight=[0.845,0.135,0.020]
     result.append(pickup_rare(weight))
-    print(result)
+    await ctx.channel.send(result)
 
 def turn_60rare():
     result=[]
@@ -19,7 +43,7 @@ def turn_60rare():
     for v in range(0,60):
         result.append(pickup_rare(weight))
         s_n="\n".join(result)
-    print(s_n)
+    await ctx.channel.send(s_n)
 
 def pickup_rare(weight):
     rarities=["R","SR","UR"]
@@ -66,33 +90,5 @@ def pickup_R():
        "剣道部エースの五月雨突き","千血妖刀 牛鬼村正","はらぺこメイジ","祭りの思い出！ おじいちゃんの祝砲","【デルミン】オニギリクママン",
        "反政府勢力クラッキング Case-171","かぞく みんなで おしゃしん",]
     return np.random.choice(r)
-
-@bot.event
-async def on_ready():
-    print("コンパスガチャシミュレーターβ版ヘヨウコソ！\n単発で引く場合は「/1」、60連引く場合は「/60」を入力してください")
-
-@bot.command()
-async def on message(message):
-    if message =="1"(ctx):
-    await ctx.turn_rare()
-    more=input("もう一度…「1」、終わる…「0」を入力")
-    while more =="1":
-        turn_rare()
-        more=input("もう一度…「1」、終わる…「0」を入力")
-        if more =="0":
-            break
-    print("ガチャホンバンモ　キタイシテイマスヨ")
-    sys.exit()
-    if message =="60"(ctx):
-    await ctx.turn_60rare()
-    more=input("もう一度…「60」、終わる…「0」を入力")
-    while more=="60":
-        turn_60rare()
-        more=input("もう一度…「60」、終わる…「0」を入力")
-        if more=="0":
-            break
-    print("ガチャホンバンモ　キタイシテイマスヨ")
-    sys.exit()
-
 
 bot.run(token)
