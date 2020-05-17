@@ -6,8 +6,8 @@ import numpy as np
 bot = commands.Bot(command_prefix='/')
 token = os.environ['DISCORD_BOT_TOKEN']
 
-@bot.event
-async def on_ready():
+@bot.command(name="ガチャる")
+async def on_message(ctx):
     print("コンパスガチャシミュレーターβ版ヘヨウコソ！\n単発で引く場合は「/1」、60連引く場合は「/60」を入力してください")
 
 @bot.command()
