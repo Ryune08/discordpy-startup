@@ -34,6 +34,19 @@ async def test(ctx):
     await ctx.channel.send("hogehoge")
     return
 
+@bot.command(aliases=["t"])
+async def testt(ctx,arg_one,arg_two):
+    await ctx.channel.send("hogehoge")
+    await ctx.channel.send(arg_one)
+    await ctx.channel.send(arg_two)
+    return
+
+@bot.command(aliases=["t"])
+async def testtt(ctx, *, arg):
+    await ctx.channel.send("hogehoge")
+    await ctx.channel.send(arg)
+    return
+
 #ボットの起動
 bot.run(TOKEN)
 
