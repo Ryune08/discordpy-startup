@@ -34,6 +34,6 @@ async def test(ctx):
     await ctx.channel.send("hogehoge")
     return
 
-#Startup bot and Connect to Discord Server
+#ボットの起動
 bot.run(TOKEN)
 
