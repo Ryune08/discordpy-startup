@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import os
 
-
 TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 #コマンドフレームワーク
