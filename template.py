@@ -34,14 +34,14 @@ async def test(ctx):
     await ctx.channel.send("hogehoge")
     return
 
-@bot.command(aliases=["t"])
+@bot.command(aliases=["t1"])
 async def testt(ctx,arg_one,arg_two):
     await ctx.channel.send("hogehoge")
     await ctx.channel.send(arg_one)
     await ctx.channel.send(arg_two)
     return
 
-@bot.command(aliases=["t"])
+@bot.command(aliases=["t2"])
 async def testtt(ctx, *, arg):
     await ctx.channel.send("hogehoge")
     await ctx.channel.send(arg)
