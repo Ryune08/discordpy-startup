@@ -2,8 +2,8 @@ import discord
 from discord.ext import commands
 import os
 
-bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+
+TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
 #コマンドフレームワーク
 command_prefix = '/'
@@ -13,6 +13,7 @@ bot = commands.Bot(command_prefix=command_prefix)
 #helpコマンド無
 #bot = commands.Bot(command_prefix=command_prefix,help_command=None)
 #bot.remove_command('help')
+
 
 #スタートアップ時の動作
 @bot.event
