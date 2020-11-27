@@ -14,7 +14,7 @@ bot = commands.Bot(command_prefix=command_prefix)
 #bot.remove_command('help')
 
 
-#スタートアップ時の動作
+# スタートアップ時の動作
 @bot.event
 async def on_ready():
     #Terminal
@@ -23,28 +23,43 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
 
-#ボットからのコマンドは無視する
+# ボットからのコマンドは無視する
 @bot.event
 async def from_bot(ctx):
     if ctx.author.bot:
         return
 
-@bot.command(aliases=["t"])
-async def test(ctx):
-    await ctx.channel.send("hogehoge")
+# ガチャの関数，画像の出力まで行う
+# 単発のとき
+async def gacha_1():
     return
 
-@bot.command(aliases=["t1"])
-async def testt(ctx,arg_one,arg_two):
-    await ctx.channel.send("hogehoge")
-    await ctx.channel.send(arg_one)
-    await ctx.channel.send(arg_two)
+async def gacha_60():
     return
 
-@bot.command(aliases=["t2"])
-async def testtt(ctx, *, arg):
-    await ctx.channel.send("hogehoge")
-    await ctx.channel.send(arg)
+# 使用者はコマンドとガチャの回数を入力する
+@bot.command()
+async def gacha(ctx, num="Expect_numbers"):
+    # 引数numが十進数字であるか判定
+    if not num.isdecimal():
+        # 引数numが十進数字でないことを知らせる処理
+        return 
+
+    # 以下，numが十進数字であるとき
+    num = int(num)
+    # 単発か60連のみを許す
+    if not (num == 1 or num == 60):
+        # 単発か60連のみを許してますよと知らせる処理
+        return
+    
+    # 単発のとき
+    if num == 1:
+        await gacha_1()
+    # 60連のとき
+    else:
+        await gacha_60()
+
+    await ctx.channel.send("ガチャホンバンモ　キタイシテイマスヨ")
     return
 
 #ボットの起動
